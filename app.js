@@ -2,7 +2,7 @@ const qwerty = document.querySelectorAll('#qwerty');
 let missed = 0;
 const startBtn = document.querySelector('.btn__reset');
 const overlay = document.getElementById('overlay');
-const hearts = document.getElementsByClassName('tries');
+
 
 
 //* Add an event listener to start game button*/
