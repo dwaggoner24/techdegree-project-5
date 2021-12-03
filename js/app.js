@@ -2,6 +2,7 @@ const qwerty = document.querySelectorAll('#qwerty');
 let missed = 0;
 const startBtn = document.querySelector('.btn__reset');
 const overlay = document.getElementById('overlay');
+const listItem = document.createElement('li');
 
 
 
@@ -57,15 +58,14 @@ function addPhraseToDisplay(arr) {
 //* Check letter function */
 function checkLetter(clickedBtn){
     const letterChoice = document.getElementsByClassName('letter');
+    const listItem = document.createElement('li');
     let match = null;
     for(let i = 0; i < letterChoice.length; i++){
-        if(letterChoice.textContent === arr[i]){
+        if(letterChoice[i].textContent === arr[i]){
             listItem.classList.add('show');
             match = listItem.textContent;
         } 
         return match;
-    }
-
 }
 
 
@@ -92,7 +92,4 @@ qwerty[0].addEventListener('click', (e) => {
 
 
 
-//* Create a function that checks whether the game has been won or lost */
-
-
-
+//* Create a function that checks whether the game has been won or lost
