@@ -13,7 +13,7 @@ const phrases = [
     'time is ticking by',
     'never give up',
     'always try your best',
-    'missery loves company'
+    'misery loves company'
 ]
 
 
@@ -45,26 +45,51 @@ const phraseArray = getRandomPhraseAsArray(phrases);
 addPhraseToDisplay(phraseArray);
 
 checkLetter = (button) => {
-    const letterChoice = document.querySelectorAll('letter');
+    const letterChoice = document.querySelectorAll('.letter');
     let match = null; 
     for(let i = 0; i < letterChoice.length; i++){
         if(letterChoice[i].textContent.toLowerCase() === button.textContent.toLowerCase()) {
-            leterChoice[i].classList.add('show');
-            match = button;
+            letterChoice[i].classList.add('show');
+            match = letterChoice[i].textContent;
         }
     }
     return match;
 }
 
 qwerty.addEventListener('click', (e) =>{ 
+    const heart = document.querySelectorAll('.tries img')
     const clickedBtn = e.target;
     if (clickedBtn.nodeName === 'BUTTON'){
         clickedBtn.classList.add('chosen');
         clickedBtn.disabled = 'true';
         let letterFound = checkLetter(clickedBtn);
         if (letterFound === null) {
+            heart[missed].src = 'images/lostHeart.png';
             missed += 1;
-
         }
+                       
+            //document.querySelectro('.tries').src=images/lostHeart.png;
+                    //*Need to put in the heart element and have it reduce after each wrong guess
+                    //not sure why this isnt working at the moment.*/
+        
     }
+    checkWin();
 });
+
+function checkWin(){ 
+    const matchLetter = document.getElementsByClassName('letter');
+    const show = document.getElementsByClassName('show');
+    if(matchLetter.length === show.length){
+        overlay.classList.add('win');
+        startBtn.textContent = "You won the game!"
+        overlay.style.display = 'flex';
+    } 
+
+    if(missed > 4){
+        overlay.classList.add('lose'); 
+        startBtn.textContent = 'Sorry, please try again.';
+        overlay.style.display = 'flex';
+    }
+}
+    
+
